@@ -67,12 +67,18 @@ function spot(){
 function movie(){
     // 
     request('http://www.omdbapi.com/?apikey=' + keys.omdb.dakey + '&t=' + search + '&plot=short&r=json', function (error, response, data) {
-        console.log('error:', error); // Print the error if one occurred
-        console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
-
-        console.log(data); 
-        // console.log(JSON.stringify(data, null, 2)); 
         
+        if (!error && response && response.statusCode === 200){
+            var movie = JSON.parse(data);
+            // console.log(movie); 
+            // console.log(JSON.stringify(data, null, 2)); 
+            console.log("Movie Title: " + movie.Title);
+            console.log("Movie Year: " + movie.Year);
+            console.log("Rated: " + movie.Rated);
+            console.log("Country: " + movie.Country);
+            console.log("Language: " + movie.Language);
+            console.log("Actors: " + movie.Actors);
+        }
       });
 }
 
