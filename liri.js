@@ -32,6 +32,7 @@ function twit(){
         }
       });
 }
+
 //Spotify-----------------------------------
 function spot(){
     var spotify = new Spotify({
@@ -43,6 +44,10 @@ function spot(){
     for (var i = 3; i < nodeArgs.length; i++){
         music = music + " " + nodeArgs[i];
     }
+    if (music == ""){
+        music = "The Sign";
+    }
+
       spotify.search({ type: 'track', query: music }, function(err, data) {
         if (err) {
           return console.log('Error occurred: ' + err);
@@ -57,26 +62,20 @@ function spot(){
             console.log("From Album: " + albumName);
       });
 }
+
 //OMDB--------------------------------------
 function movie(){
+    // 
     request('http://www.omdbapi.com/?apikey=' + keys.omdb.dakey + '&t=' + search + '&plot=short&r=json', function (error, response, data) {
         console.log('error:', error); // Print the error if one occurred
         console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
 
-  
         console.log(data); 
         // console.log(JSON.stringify(data, null, 2)); 
         
       });
-    //   Title of the movie.
-    //   * Year the movie came out.
-    //   * IMDB Rating of the movie.
-    //   * Rotten Tomatoes Rating of the movie.
-    //   * Country where the movie was produced.
-    //   * Language of the movie.
-    //   * Plot of the movie.
-    //   * Actors in the movie.
 }
+
 //FSReadFile--------------------------------
 function doit(){
     //Read text file here:
